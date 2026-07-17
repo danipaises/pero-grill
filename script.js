@@ -148,7 +148,6 @@ const menuData = [
 ];
 
 // Estado da Aplicação
-let currentMode = null; // 'delivery' ou 'restaurant'
 let cart = [];
 
 // Elementos DOM
@@ -157,12 +156,6 @@ const btnCardapio = document.getElementById('btn-cardapio');
 const heroBtnCardapio = document.getElementById('hero-btn-cardapio');
 const sectionHistoria = document.getElementById('section-historia');
 const sectionCardapio = document.getElementById('section-cardapio');
-
-const modalMode = document.getElementById('modal-mode');
-const btnModeDelivery = document.getElementById('btn-mode-delivery');
-const btnModeRestaurant = document.getElementById('btn-mode-restaurant');
-const btnChangeMode = document.getElementById('btn-change-mode');
-const consumptionModeDisplay = document.getElementById('consumption-mode-display');
 
 const menuContainer = document.getElementById('menu-container');
 const floatingCartBtn = document.getElementById('btn-floating-cart');
@@ -204,11 +197,6 @@ function switchTab(tab) {
         sectionHistoria.classList.add('hidden');
         sectionCardapio.classList.add('active');
         sectionCardapio.classList.remove('hidden');
-
-        // Se entrar no cardápio e não tiver modo escolhido, exibe modal
-        if (!currentMode) {
-            modalMode.classList.remove('hidden');
-        }
     }
 }
 
@@ -216,30 +204,7 @@ btnHistoria.addEventListener('click', () => switchTab('historia'));
 btnCardapio.addEventListener('click', () => switchTab('cardapio'));
 heroBtnCardapio.addEventListener('click', () => switchTab('cardapio'));
 
-// Modal de Modos
-btnModeDelivery.addEventListener('click', () => {
-    currentMode = 'delivery';
-    consumptionModeDisplay.innerHTML = `Modo: Delivery <button id="btn-change-mode" class="btn-text">Alterar</button>`;
-    modalMode.classList.add('hidden');
-    rebindChangeMode();
-    renderMenu();
-    updateCartUI(); // Esconde carrinho se houver
-});
 
-btnModeRestaurant.addEventListener('click', () => {
-    currentMode = 'restaurant';
-    consumptionModeDisplay.innerHTML = `Modo: No Restaurante <button id="btn-change-mode" class="btn-text">Alterar</button>`;
-    modalMode.classList.add('hidden');
-    rebindChangeMode();
-    renderMenu();
-    updateCartUI();
-});
-
-function rebindChangeMode() {
-    document.getElementById('btn-change-mode').addEventListener('click', () => {
-        modalMode.classList.remove('hidden');
-    });
-}
 
 // Renderizar Cardápio
 function renderMenu() {
@@ -260,15 +225,13 @@ function renderMenu() {
             const card = document.createElement('div');
             card.className = 'menu-card';
             
-            // Lógica do Botão dependendo do modo
-            let buttonHTML = '';
-            if (currentMode === 'delivery') {
-                buttonHTML = `<button class="btn-whatsapp" onclick="orderWhatsApp('${item.name}')">🛵 Pedir via WhatsApp</button>`;
-            } else if (currentMode === 'restaurant') {
-                buttonHTML = `<button class="btn-add" onclick="addToCart('${item.name}')">➕ Adicionar à Comanda</button>`;
-            } else {
-                buttonHTML = `<button class="btn-add" style="opacity: 0.5; cursor: not-allowed;" disabled>Selecione um Modo</button>`;
-            }
+            // Ambos os botões para cada item
+            let buttonHTML = `
+                <div class="action-buttons">
+                    <button class="btn-whatsapp" onclick="orderWhatsApp('${item.name}')">🛵 Pedir no WhatsApp</button>
+                    <button class="btn-add" onclick="addToCart('${item.name}')">➕ Adicionar à Comanda (Loja)</button>
+                </div>
+            `;
 
             card.innerHTML = `
                 <img src="${category.image}" alt="${category.category} - Imagem Representativa">
@@ -316,7 +279,7 @@ function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
     cartCountSpan.innerText = `(${totalItems})`;
 
-    if (currentMode === 'restaurant' && totalItems > 0) {
+    if (totalItems > 0) {
         floatingCartBtn.classList.remove('hidden');
     } else {
         floatingCartBtn.classList.add('hidden');

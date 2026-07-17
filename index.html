@@ -17,15 +17,15 @@
             <span class="subtitle">Mania de Pizza</span>
         </div>
         <nav class="nav-links">
-            <button class="nav-btn active" id="btn-historia">Nossa História</button>
-            <button class="nav-btn" id="btn-cardapio">Cardápio</button>
+            <button class="nav-btn" id="btn-historia">Nossa História</button>
+            <button class="nav-btn active" id="btn-cardapio">Cardápio</button>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
         <!-- Section: Nossa História -->
-        <section id="section-historia" class="page-section active">
+        <section id="section-historia" class="page-section hidden">
             <div class="hero">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
@@ -61,11 +61,10 @@
         </section>
 
         <!-- Section: Cardápio -->
-        <section id="section-cardapio" class="page-section hidden">
+        <section id="section-cardapio" class="page-section active">
             <div class="container">
                 <div class="menu-header">
                     <h2>Nosso Cardápio</h2>
-                    <p id="consumption-mode-display">Modo: Não selecionado <button id="btn-change-mode" class="btn-text">Alterar</button></p>
                 </div>
                 
                 <div id="menu-container" class="menu-container">
@@ -75,23 +74,6 @@
         </section>
     </main>
 
-    <!-- Modal: Seleção de Modo de Consumo -->
-    <div id="modal-mode" class="modal-overlay">
-        <div class="modal-content glass-effect">
-            <h2>A Mágica do Pedido</h2>
-            <p>Como você deseja consumir hoje?</p>
-            <div class="modal-buttons">
-                <button id="btn-mode-delivery" class="btn-mode">
-                    <span class="mode-icon">🛵</span>
-                    Delivery / Comer em Casa
-                </button>
-                <button id="btn-mode-restaurant" class="btn-mode">
-                    <span class="mode-icon">🍽️</span>
-                    Estou no Restaurante
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Floating Button para Comanda (Somente no Restaurante) -->
     <button id="btn-floating-cart" class="floating-cart hidden">
