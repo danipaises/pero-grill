@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Peró Grill e Mania de Pizza - O melhor churrasco e pizza de Cabo Frio.">
+    <title>Peró Grill | Mania de Pizza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="logo">
+            <h1>Peró<span>Grill</span></h1>
+            <span class="subtitle">Mania de Pizza</span>
+        </div>
+        <nav class="nav-links">
+            <button class="nav-btn active" id="btn-historia">Nossa História</button>
+            <button class="nav-btn" id="btn-cardapio">Cardápio</button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Section: Nossa História -->
+        <section id="section-historia" class="page-section active">
+            <div class="hero">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h2 class="hero-title">Onde a tradição encontra o sabor da brasa.</h2>
+                    <p class="hero-subtitle">Vivencie a experiência completa do Peró.</p>
+                    <button id="hero-btn-cardapio" class="btn-primary pulse-anim">Acessar Cardápio Digital</button>
+                </div>
+            </div>
+
+            <div class="container story-info-container">
+                <div class="story-box">
+                    <h3>Nossa História</h3>
+                    <p>Há mais de uma década, o aroma inconfundível de carne na brasa e massa fresca começou a se misturar com a suave brisa do mar do Peró. Assim nasceu o Peró Grill, um sonho que começou pequeno, movido pela paixão autêntica de servir bem e criar momentos inesquecíveis. Localizado no coração de Cabo Frio, nosso restaurante foi idealizado para ser mais do que apenas um lugar para comer; queríamos um verdadeiro refúgio familiar.</p>
+                    <p>Com o tempo, a famosa "Mania de Pizza" uniu-se à nossa cozinha, combinando o calor do nosso churrasco com a tradição das redondas mais recheadas da região. Hoje, seja depois de um dia de sol na Praia do Peró ou em uma noite estrelada de fim de semana, o Peró Grill é o ponto de encontro perfeito para turistas e moradores. Aqui, cada prato é preparado com afeto, os sorrisos são sinceros e a mesa está sempre farta. Sinta-se em casa, afinal, a nossa família está aqui para servir a sua.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Informações</h3>
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <p><strong>Endereço:</strong><br>Rua do Moinho - Peró,<br>Cabo Frio - RJ, 28922-235</p>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">⏰</span>
+                        <p><strong>Horários:</strong><br>Seg a Qui: 11:30 às 23:00<br>Sex a Dom: 11:30 à 00:00</p>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <p><strong>Telefone:</strong><br><a href="tel:2226443874">(22) 2644-3874</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Cardápio -->
+        <section id="section-cardapio" class="page-section hidden">
+            <div class="container">
+                <div class="menu-header">
+                    <h2>Nosso Cardápio</h2>
+                    <p id="consumption-mode-display">Modo: Não selecionado <button id="btn-change-mode" class="btn-text">Alterar</button></p>
+                </div>
+                
+                <div id="menu-container" class="menu-container">
+                    <!-- Menu categories will be injected here via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal: Seleção de Modo de Consumo -->
+    <div id="modal-mode" class="modal-overlay">
+        <div class="modal-content glass-effect">
+            <h2>A Mágica do Pedido</h2>
+            <p>Como você deseja consumir hoje?</p>
+            <div class="modal-buttons">
+                <button id="btn-mode-delivery" class="btn-mode">
+                    <span class="mode-icon">🛵</span>
+                    Delivery / Comer em Casa
+                </button>
+                <button id="btn-mode-restaurant" class="btn-mode">
+                    <span class="mode-icon">🍽️</span>
+                    Estou no Restaurante
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Button para Comanda (Somente no Restaurante) -->
+    <button id="btn-floating-cart" class="floating-cart hidden">
+        Ver minha Comanda <span id="cart-count">(0)</span>
+    </button>
+
+    <!-- Modal: Comanda do Cliente -->
+    <div id="modal-cart" class="modal-overlay hidden">
+        <div class="modal-content cart-content glass-effect">
+            <button class="close-modal" id="btn-close-cart">&times;</button>
+            <h2>Sua Comanda</h2>
+            <div class="cart-instruction alert-info">
+                <strong>Mostre esta tela para o garçom para fazer seu pedido.</strong>
+            </div>
+            <ul id="cart-items-list" class="cart-items">
+                <!-- Cart items injected here -->
+            </ul>
+            <div class="cart-total">
+                <p>Taxa de serviço (10%) não inclusa.</p>
+            </div>
+            <button class="btn-primary w-100" id="btn-clear-cart">Limpar Comanda</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
